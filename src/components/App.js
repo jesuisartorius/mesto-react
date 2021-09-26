@@ -5,15 +5,13 @@ import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 import api from "../utils/api";
-import avatar from "../images/avatar.png";
 
 function App() {
     // Popup States
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-    const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] =
-        useState(false);
+    const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = useState(false);
 
     const [isPreviewImagePopupOpen, setIsPreviewImagePopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({});
@@ -21,7 +19,7 @@ function App() {
     const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
     const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
     const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
-    const handleConfirmDeleteClick = () => setIsConfirmDeletePopupOpen(true);
+    const handleDeleteClick = () => setIsConfirmDeletePopupOpen(true);
 
     const handleCardClick = (card) => {
         setSelectedCard(card);
@@ -40,7 +38,7 @@ function App() {
     const [user, setUser] = useState({
         name: "",
         about: "",
-        avatar: avatar,
+        avatar: "",
     });
 
     const [cards, setCards] = useState([]);
@@ -49,6 +47,8 @@ function App() {
         api.getAppInfo().then(([userData, cards]) => {
             setUser(userData);
             setCards(cards);
+        }).catch((err) => {
+            console.log(err);
         });
     }, []);
 
@@ -60,7 +60,7 @@ function App() {
                 onAddPlaceClick={handleAddPlaceClick}
                 onEditAvatarClick={handleEditAvatarClick}
                 onCardClick={handleCardClick}
-                onConfirmDeleteClick={handleConfirmDeleteClick}
+                onDeleteClick={handleDeleteClick}
                 cards={cards}
                 user={user}
             />

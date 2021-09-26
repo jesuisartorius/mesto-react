@@ -1,7 +1,7 @@
 const Card = ({
                   card,
                   onCardClick,
-                  onConfirmDeleteClick
+                  onDeleteClick
               }) => {
     return (
         <>
@@ -10,7 +10,7 @@ const Card = ({
                     className="element__delete-button"
                     aria-label="Delete button"
                     type="button"
-                    onClick={() => onConfirmDeleteClick(card._id)}
+                    onClick={() => onDeleteClick(card._id)}
                 />
                 <div
                     className="element__image"

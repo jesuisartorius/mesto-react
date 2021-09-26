@@ -5,7 +5,7 @@ const Main = ({
                   onAddPlaceClick,
                   onEditAvatarClick,
                   onCardClick,
-                  onConfirmDeleteClick,
+                  onDeleteClick,
                   user,
                   cards,
               }) => {
@@ -19,7 +19,7 @@ const Main = ({
                     />
                     <img
                         src={user.avatar}
-                        alt="old person with a red hat smiling to camera"
+                        alt="Аватар пользователя"
                         className="profile__avatar"
                     />
                 </div>
@@ -48,7 +48,7 @@ const Main = ({
                             key={card._id}
                             card={card}
                             onCardClick={onCardClick}
-                            onConfirmDeleteClick={onConfirmDeleteClick}
+                            onDeleteClick={onDeleteClick}
                         />
                     ))}
                 </ul>

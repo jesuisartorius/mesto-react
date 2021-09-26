@@ -13,12 +13,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40.7px 40.7px;
-  transition: opacity 0.2s linear;
+  transition: all 0.2s linear;
 }
 
 .popup__close-button:hover {
   opacity: 0.6;
-  transform: rotate(45deg);
+  transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 430px) {

@@ -5,8 +5,12 @@ import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 import api from "../utils/api";
+import Loader from "./Loader/Loader";
 
 function App() {
+    const [isLoading, setIsLoading] = useState(false);
+
+
     // Popup States
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -44,17 +48,20 @@ function App() {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
+        setIsLoading(true);
         api.getAppInfo().then(([userData, cards]) => {
             setUser(userData);
             setCards(cards);
         }).catch((err) => {
             console.log(err);
+        }).finally(() => {
+            setIsLoading(false);
         });
     }, []);
 
     return (
         <>
-            <Header />
+            {isLoading ? <Loader/> : <Header />}
             <Main
                 onEditProfileClick={handleEditProfileClick}
                 onAddPlaceClick={handleAddPlaceClick}

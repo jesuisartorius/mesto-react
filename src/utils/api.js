@@ -20,10 +20,7 @@ class Api {
         }).then(this._handleResponse);
     }
 
-    /**
-     * Returns a Promise of type Response that waits for user information and card data from server
-     * @returns Promise<Response>
-     */
+
     getAppInfo() {
         return Promise.all([this.getUserData(), this.getInitialCards()]);
     }
@@ -44,11 +41,7 @@ class Api {
         }).then(this._handleResponse);
     }
 
-    /**
-     *Returns a Promise of type Response that yields user avatar
-     * @param {String} avatar url of the user's profile
-     * @returns Promise<Response>
-     */
+
     setUserAvatar({ avatar }) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers,

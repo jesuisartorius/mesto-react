@@ -8,8 +8,8 @@ import api from "../utils/api";
 import Loader from "./Loader/Loader";
 
 function App() {
+    // Loader state
     const [isLoading, setIsLoading] = useState(false);
-
 
     // Popup States
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);

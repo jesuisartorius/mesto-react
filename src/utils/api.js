@@ -1,5 +1,5 @@
 class Api {
-    constructor({ baseUrl, headers, apiKey }) {
+    constructor({baseUrl, headers, apiKey}) {
         this._baseUrl = baseUrl;
         this._headers = headers;
     }
@@ -9,7 +9,7 @@ class Api {
     }
 
     getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
+        return fetch(`${this._baseUrl}/cards`, {headers: this._headers}).then(
             this._handleResponse
         );
     }
@@ -25,37 +25,32 @@ class Api {
         return Promise.all([this.getUserData(), this.getInitialCards()]);
     }
 
-    addCard({ name, link }) {
+    addCard({name, link}) {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
             headers: this._headers,
-            body: JSON.stringify({ name, link }),
+            body: JSON.stringify({name, link}),
         }).then(this._handleResponse);
     }
 
-    setUserInfo({ name, about }) {
+    setUserInfo({name, about}) {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
             method: "PATCH",
-            body: JSON.stringify({ name, about }),
+            body: JSON.stringify({name, about}),
         }).then(this._handleResponse);
     }
 
 
-    setUserAvatar({ avatar }) {
+    setUserAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers,
             method: "PATCH",
-            body: JSON.stringify({ avatar }),
+            body: JSON.stringify({avatar}),
         }).then(this._handleResponse);
     }
 
-    /**
-     * Returns a Promise of type Response that yields a
-     * single card given an ID
-     * @param {String} cardId that corresponds to a card
-     * @returns Promise<Response>
-     */
+
     addLike(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             headers: this._headers,
@@ -70,6 +65,10 @@ class Api {
         }).then(this._handleResponse);
     }
 
+    changeLikeCardStatus(cardId, isLiked) {
+        return isLiked ? this.addLike(cardId) : this.deleteLike(cardId);
+    }
+
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             headers: this._headers,
@@ -81,7 +80,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
             method: "POST",
-            body: JSON.stringify({ name: this.name, link: this.link }),
+            body: JSON.stringify({name: this.name, link: this.link}),
         }).then(this._handleResponse);
     }
 }

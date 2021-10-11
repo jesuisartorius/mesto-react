@@ -5,10 +5,19 @@ const PopupWithForm = ({
                            isOpen,
                            children,
                            onClose,
+                           onSubmit,
                        }) => {
+
+    const handleOutsideClick = (e) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
     return (
         <section
-            className={`popup popup_type_${name} ${isOpen && "popup_opened"}`}>
+            className={`popup popup_type_${name} ${isOpen && "popup_opened"}`}
+            onClick={handleOutsideClick}>
             <div className={`popup__container popup__container_${name}`}>
                 <button
                     type="button"
@@ -19,7 +28,7 @@ const PopupWithForm = ({
                 <form
                     name={name}
                     className={`popup__form popup__form_type_${name}`}
-                    noValidate
+                    onSubmit={onSubmit}
                 >
                     <h2 className="popup__title">{title}</h2>
                     {children}

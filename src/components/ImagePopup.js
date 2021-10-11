@@ -4,9 +4,17 @@ const ImagePopup = ({
                         card,
                         onClose
                     }) => {
+
+    const handleOutsideClick = (e) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
     return (
         <section
-            className={`popup popup_type_${name} ${isOpen && "popup_opened"}`}>
+            className={`popup popup_type_${name} ${isOpen && "popup_opened"}`}
+            onClick={handleOutsideClick}>
             <div className={`popup__container popup__container_${name}`}>
                 <button
                     type="button"

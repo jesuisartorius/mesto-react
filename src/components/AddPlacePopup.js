@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PopupWithForm from "./PopupWithForm";
 
 const AddPlacePopup = ({isOpen, onClose, onAddPlace}) => {
@@ -8,10 +8,13 @@ const AddPlacePopup = ({isOpen, onClose, onAddPlace}) => {
     const handleChange = (e) =>
         setFormFields({...formFields, [e.target.name]: e.target.value});
 
+    useEffect(() => {
+        setFormFields({name: "", link: ""});
+    }, [isOpen]);
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         onAddPlace(formFields);
-        setFormFields({name: "", link: ""});
     };
 
     return (
